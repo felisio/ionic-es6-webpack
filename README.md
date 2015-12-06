@@ -1,5 +1,7 @@
 # Ionic ES6 Webpack
 
+[pt-version](https://github.com/felisio/ionic-es6-webpack/blob/master/README-pt.md)
+
 Template Ionic sidemenu using ES6, Webpack and NG6.
 
 ---
