@@ -1,10 +1,10 @@
 # Ionic ES6 Webpack
 
+
+> Template [Ionic sidemenu](http://ionicframework.com/getting-started/) using [ES6](https://github.com/lukehoban/es6features#readme) + [Webpack](https://webpack.github.io/) + [NG6](https://github.com/AngularClass/NG6-starter)
+
+
 [pt-version](https://github.com/felisio/ionic-es6-webpack/blob/master/README-pt.md)
-
-Template Ionic sidemenu using ES6, Webpack and NG6.
-
----
 
 This repository makes a initial project on ionic sidemenu template, adapted and based on the project NG6-starter, to be written in Angular.js using the ES6, Webpack, Babel and Gulp.
 The main modifications made to execute an Ionic project will be described below. For more information, access NG6-starter project Official Document.
