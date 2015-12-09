@@ -18,7 +18,7 @@ let <%= name %>Module = angular.module('<%= name %>', [
       url: '/<%= name %>',
       views: {
 	      'menuContent': {
-	        templateUrl: `${config.pathHtml}<%= name %>/<%= name %>.html`
+	        templateUrl: config.pathHtml + '<%= name %>/<%= name %>.html',
 		    }
 	    }
     });
