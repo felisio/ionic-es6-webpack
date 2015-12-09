@@ -1,4 +1,4 @@
-import template from './<%= name %>.html';
+import template from './<%= name %>.component.html';
 import controller from './<%= name %>.controller';
 
 let <%= name %>Component = function () {
