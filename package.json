@@ -1,7 +1,7 @@
 {
-  "name": "nodenr12app",
+  "name": "yourNameapp",
   "version": "0.0.1",
-  "description": "nodeNr12App: An Ionic project",
+  "description": "yourNameApp: An Ionic project",
   "main": "index.js",
   "dependencies": {
     "angular": "^1.4.4",
