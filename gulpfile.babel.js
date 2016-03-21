@@ -1,5 +1,6 @@
 'use strict';
 
+// Import modules
 import gulp      from 'gulp';
 import webpack   from 'webpack-stream';
 import path      from 'path';
@@ -13,21 +14,25 @@ import lodash    from 'lodash';
 import sass      from 'gulp-sass';
 import minifyCss from 'gulp-minify-css';
 
+
 let reload = () => serve.reload();
 let root = 'www';
 
-// helper method for resolving paths
+
+// Helper method for resolving paths
 let resolveToApp = (glob) => {
   glob = glob || '';
-  return path.join(root, 'app', glob); 
+  return path.join(root, 'app', glob);
 };
+
 
 let resolveToComponents = (glob) => {
   glob = glob || '';
-  return path.join(root, 'app/', glob); 
+  return path.join(root, 'app/', glob);
 };
 
-// map of all paths
+
+// Map of all paths
 let paths = {
   js: resolveToComponents('**/*!(.spec.js).js'), // exclude spec files
   html: [
@@ -40,14 +45,16 @@ let paths = {
   sass: ['./scss/**/*.scss']
 };
 
-// use webpack.config.js to build modules
+
+// Use webpack.config.js to build modules
 gulp.task('webpack', () => {
   return gulp.src(paths.entry)
     .pipe(webpack(require('./webpack.config')))
     .pipe(gulp.dest(paths.output));
 });
 
-//start server for browser-sync
+
+// Start server for browser-sync
 gulp.task('serve', () => {
   serve({
     port: process.env.PORT || 3000,
@@ -55,6 +62,15 @@ gulp.task('serve', () => {
     server: { baseDir: root }
   });
 });
+
+
+// Restart android server
+gulp.task('androidserver', shell.task([
+ 'adb kill-server',
+ 'adb start-server',
+ 'adb devices -l'
+]));
+
 
 gulp.task('component', () => {
   let cap = (val) => {
@@ -75,6 +91,8 @@ gulp.task('component', () => {
     .pipe(gulp.dest(destPath));
 });
 
+
+// Compile, minify and rename sass file
 gulp.task('sass', () => {
   gulp.src('./scss/ionic.app.scss')
     .pipe(sass().on('error', sass.logError))
@@ -86,16 +104,21 @@ gulp.task('sass', () => {
     .pipe(gulp.dest('./www/css/'))
 });
 
+
+// Watching all files and reload server
 gulp.task('watch', () => {
   let allPaths = [].concat([paths.js], paths.html, [paths.sass]);
   gulp.watch(allPaths, ['webpack','sass', reload]);
 });
 
 
+// Start all tasks
 gulp.task('default', (done) => {
   sync('webpack','watch', 'sass', done);
 });
 
+
+// Start server
 gulp.task('serve', (done) => {
   sync('default', 'serve', done);
 });
